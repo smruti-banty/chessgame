@@ -13,13 +13,13 @@ public class LetsPlay {
 	
 	public static void main(String[] args) {
 		Scanner ss = new Scanner(System.in);
-//		DotMove.start();
-		Player p1 = new Player("Smruti", Color.WHITE);
-		Player p2 = new Player("Rashmi", Color.BLACK);
+		System.out.println("Enter player1 name");
+		Player p1 = new Player(ss.next(), Color.WHITE);
+		System.out.println("Enter player2 name");
+		Player p2 = new Player(ss.next(), Color.BLACK);
 		System.out.println("The Ultimate Chess Begin");
 		System.out.println("-----------------------\n");
-		
-		System.out.println("Note: The top own is white and bootom own is black\n");
+		System.out.println("Note: The top own is WHITE and bootom own is BLACK\n");
 		
 		
 		Dot[][] dot = Board.getInstance().getDot();
