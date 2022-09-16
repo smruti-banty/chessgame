@@ -21,7 +21,6 @@ public class LetsPlay {
 		System.out.println("-----------------------\n");
 		System.out.println("Note: The top own is WHITE and bootom own is BLACK\n");
 		
-		
 		Dot[][] dot = Board.getInstance().getDot();
 		DotMove.start(p1, p2);
 		DotDetails.showBoard();
