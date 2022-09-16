@@ -3,10 +3,10 @@ package game.chessgame;
 import java.util.Scanner;
 
 import game.chessgame.boarddesign.Board;
+import game.chessgame.boarddesign.BoardMovement;
+import game.chessgame.boarddesign.BoardUtility;
+import game.chessgame.boarddesign.BoardView;
 import game.chessgame.boarddesign.Color;
-import game.chessgame.dotdesign.Dot;
-import game.chessgame.dotutility.DotDetails;
-import game.chessgame.dotutility.DotMove;
 import game.chessgame.players.Player;
 
 public class LetsPlay {
@@ -20,10 +20,15 @@ public class LetsPlay {
 		System.out.println("The Ultimate Chess Begin");
 		System.out.println("-----------------------\n");
 		System.out.println("Note: The top own is WHITE and bootom own is BLACK\n");
-		
-		Dot[][] dot = Board.getInstance().getDot();
-		DotMove.start(p1, p2);
-		DotDetails.showBoard();
+		new LetsPlay().gameBegin(p1, p2, ss);
+		ss.close();
+	}
+	public void gameBegin(Player p1,Player p2,Scanner ss)
+	{
+		BoardMovement bm = (BoardMovement) BoardUtility.getInstance("BoardMovement");
+		BoardView bv= (BoardView) BoardUtility.getInstance("BoardView");
+		bm.start(p1, p2);
+		bv.showBoard();
 		int quit = 0;
 		int turn = 1;
 		do {
@@ -36,8 +41,7 @@ public class LetsPlay {
 			System.out.println("Please enter the destination coordinate");
 			int destinationX = ss.nextInt();
 			int destinationY = ss.nextInt();
-			
-			boolean moveDot = DotMove.moveDot(destinationX, destinationY, dot[intialStateX][intialStateY], p1, p2);
+			boolean moveDot = bm.moveDot(intialStateX,intialStateY, destinationX, destinationY, p1, p2);
 			if(!moveDot) {
 				System.out.println("Can't move item");
 				continue;
@@ -48,13 +52,13 @@ public class LetsPlay {
 			switch(ss.nextInt())
 			{
 			case 1: 
-				DotDetails.showBoard();
+				bv.showBoard();
 				break;
 			case 2: 
-				DotDetails.playserDotRemaining(turn == 1 ? p1 : p2 );;
+				bv.playserDotRemaining(turn == 1 ? p1 : p2 );;
 				break;
 			case 3: 
-				DotDetails.playserDotRemaining(turn == 1 ? p2 : p1 );;
+				bv.playserDotRemaining(turn == 1 ? p2 : p1 );;
 				break;
 			default:
 				System.out.println("\n\n-----Invalid Option------\n");

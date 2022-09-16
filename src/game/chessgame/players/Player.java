@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import game.chessgame.boarddesign.Color;
-import game.chessgame.dotdesign.Dot;
 
 public class Player {
 	private String playerName;

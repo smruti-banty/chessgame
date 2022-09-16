@@ -2,6 +2,9 @@ package game.chessgame.dotdesign;
 
 import java.util.UUID;
 
+import game.chessgame.boarddesign.BoardMoveImpl;
+import game.chessgame.boarddesign.BoardMovement;
+import game.chessgame.boarddesign.BoardUtility;
 import game.chessgame.boarddesign.Color;
 
 public abstract class Dot {
@@ -10,15 +13,23 @@ public abstract class Dot {
 	private int y;
 	private UUID uuid;
 	private String dotName;
+	private BoardMovement boardMovement;
 	public Dot(Color color,int startPointX,int startPointY) {
 		this.color = color;
 		this.x=startPointX;
 		this.y=startPointY;
 		this.dotName = getClass().getSimpleName();
 		uuid=UUID.randomUUID();
+		this.boardMovement=(BoardMovement) BoardUtility.getInstance("BoardMovement");
 	}
 	public abstract boolean canMove(int x,int y);
 	
+	public BoardMovement getBoardMovement() {
+		return boardMovement;
+	}
+	public void setBoardMovement(BoardMovement boardMovement) {
+		this.boardMovement = boardMovement;
+	}
 	public String getDotName() {
 		return dotName;
 	}

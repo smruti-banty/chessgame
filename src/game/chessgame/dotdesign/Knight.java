@@ -1,7 +1,6 @@
 package game.chessgame.dotdesign;
 
 import game.chessgame.boarddesign.Color;
-import game.chessgame.dotutility.DotMove;
 
 public class Knight extends Dot{
 
@@ -12,7 +11,7 @@ public class Knight extends Dot{
 	@Override
 	public boolean canMove(int x, int y) {
 		// TODO Auto-generated method stub
-		if(!DotMove.isAnyDot(x, y) || (DotMove.isAnyDot(x, y) && !DotMove.isSameColorDot(x, y, getColor())))
+		if(!getBoardMovement().isAnyDot(x, y) || (getBoardMovement().isAnyDot(x, y) && !getBoardMovement().isSameColorDot(x, y, getColor())))
 		{
 			boolean isLShsape = ((getY()-y)==2 && (getX()-x)==1) || ((getX()-x)==2 && (getY()-y)==1);
 			return isLShsape;

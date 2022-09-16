@@ -1,7 +1,6 @@
 package game.chessgame.dotdesign;
 
 import game.chessgame.boarddesign.Color;
-import game.chessgame.dotutility.DotMove;
 
 public class King extends Dot{
 
@@ -12,7 +11,7 @@ public class King extends Dot{
 	@Override
 	public boolean canMove(int x, int y) {
 		
-		if(!DotMove.isAnyDot(x, y) || (DotMove.isAnyDot(x, y) && !DotMove.isSameColorDot(x, y, getColor())))
+		if(!getBoardMovement().isAnyDot(x, y) || (getBoardMovement().isAnyDot(x, y) && !getBoardMovement().isSameColorDot(x, y, getColor())))
 		{
 			boolean isVertically = (((getX() + 1) == x) || ((getX() - 1)== x)) && getY() == y;
 			boolean isHorizontal = (((getY() + 1) == y) || ((getY() - 1)== y)) && getX() == x;

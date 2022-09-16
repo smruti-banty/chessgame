@@ -1,7 +1,6 @@
 package game.chessgame.dotdesign;
 
 import game.chessgame.boarddesign.Color;
-import game.chessgame.dotutility.DotMove;
 
 public class Pawn extends Dot{
 
@@ -12,7 +11,7 @@ public class Pawn extends Dot{
 
 	@Override
 	public boolean canMove(int x, int y) {
-		if(!DotMove.isAnyDot(x, y))
+		if(!getBoardMovement().isAnyDot(x, y))
 		{
 			boolean isVertically=false;
 			if(this.getColor()==Color.WHITE)
@@ -20,7 +19,7 @@ public class Pawn extends Dot{
 			else
 				isVertically = ((getX() - 1) == x) && (getY() == y);
 		    return isVertically;
-		}else if(DotMove.isAnyDot(x, y) && !DotMove.isSameColorDot(x, y, getColor())) {
+		}else if(getBoardMovement().isAnyDot(x, y) && !getBoardMovement().isSameColorDot(x, y, getColor())) {
 			boolean isDiagonally = (((getX() + 1) == x) ) && 
 					(((getY() + 1) == y) || ((getY() - 1)== y));
 			return isDiagonally;

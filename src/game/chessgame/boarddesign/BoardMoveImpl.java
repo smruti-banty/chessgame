@@ -1,9 +1,5 @@
-package game.chessgame.dotutility;
+package game.chessgame.boarddesign;
 
-import java.util.Iterator;
-
-import game.chessgame.boarddesign.Board;
-import game.chessgame.boarddesign.Color;
 import game.chessgame.dotdesign.Bishop;
 import game.chessgame.dotdesign.Dot;
 import game.chessgame.dotdesign.King;
@@ -13,12 +9,13 @@ import game.chessgame.dotdesign.Queen;
 import game.chessgame.dotdesign.Rook;
 import game.chessgame.players.Player;
 
-public class DotMove {
-	public static boolean moveDot(int xPosition, int yPosition, Dot dot, Player p, Player opposition) {
-		Board board = Board.getInstance();
-		if (dot.canMove(xPosition, yPosition)) {
-			if (isAnyDot(xPosition, yPosition) && !isSameColorDot(xPosition, yPosition, dot.getColor())) {
-				Dot oppositionDot = board.getDot()[xPosition][yPosition];
+public class BoardMoveImpl implements BoardMovement {
+	@Override
+	public boolean moveDot(int intialX,int intialY,int destinationX, int destinationY, Player p, Player opposition) {
+		Dot dt = dot[intialX][intialY];
+		if (dt.canMove(destinationX, destinationY)) {
+			if (isAnyDot(destinationX, destinationY) && !isSameColorDot(destinationX, destinationY, dt.getColor())) {
+				Dot oppositionDot = Board.dot[destinationX][destinationY];
 				opposition.getAllDot().put(oppositionDot.getDotName(),
 						opposition.getAllDot().get(oppositionDot.getDotName()) - 1);
 				if (oppositionDot.getDotName().equals("King")) {
@@ -29,33 +26,29 @@ public class DotMove {
 				}
 
 			}
-			// blank (null) the previous position
-			setMove(dot.getX(), dot.getY(), null);
-			// set the new dot position
-			dot.setX(xPosition);
-			dot.setY(yPosition);
-			setMove(xPosition, yPosition, dot);
+			setMove(dt.getX(), dt.getY(), null);
+			dt.setX(destinationX);
+			dt.setY(destinationY);
+			setMove(destinationX, destinationY, dt);
 			return true;
 		}
 		return false;
 	}
-
-	public static boolean isAnyDot(int x, int y) {
-		return Board.getInstance().getDot()[x][y] != null;
+	@Override
+	public boolean isAnyDot(int x, int y) {
+		return Board.dot[x][y] != null;
 	}
-
-	public static boolean isSameColorDot(int x, int y, Color color) {
-		return Board.getInstance().getDot()[x][y].getColor() == color;
+	@Override
+	public boolean isSameColorDot(int x, int y, Color color) {
+		return Board.dot[x][y].getColor() == color;
 	}
-
-	public static void setMove(int x, int y, Dot dot) {
-		Board board = Board.getInstance();
-		board.getDot()[x][y] = dot;
+	@Override
+	public void setMove(int x, int y, Dot dot) {
+		Board.dot[x][y] = dot;
 	}
-
-	public static void start(Player p1, Player p2) {
-		Board board = Board.getInstance();
-		Dot[][] dot = board.getDot();
+	@Override
+	public void start(Player p1, Player p2) {
+		Dot[][] dot = Board.dot;
 		dot[0][0] = new Rook(p1.getColor(), 0, 0);
 		dot[0][7] = new Rook(p1.getColor(), 0, 7);
 
@@ -86,4 +79,5 @@ public class DotMove {
 		}
 
 	}
+	
 }
