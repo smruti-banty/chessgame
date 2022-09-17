@@ -2,28 +2,40 @@ package game.chessgame.dotdesign;
 
 import java.util.UUID;
 
-import game.chessgame.boarddesign.BoardMoveImpl;
 import game.chessgame.boarddesign.BoardMovement;
 import game.chessgame.boarddesign.BoardUtility;
 import game.chessgame.boarddesign.Color;
 
-public abstract class Dot {
-	private final Color color;
+public abstract class Dot implements IDot {
+	private Color color;
 	private int x;
 	private int y;
 	private UUID uuid;
 	private String dotName;
 	private BoardMovement boardMovement;
-	public Dot(Color color,int startPointX,int startPointY) {
-		this.color = color;
-		this.x=startPointX;
-		this.y=startPointY;
-		this.dotName = getClass().getSimpleName();
-		uuid=UUID.randomUUID();
-		this.boardMovement=(BoardMovement) BoardUtility.getInstance("BoardMovement");
+	public Dot()
+	{
+		boardMovement=(BoardMovement) BoardUtility.getInstance("BoardMovement");
+		uuid= UUID.randomUUID();
+		dotName = getClass().getSimpleName();
 	}
-	public abstract boolean canMove(int x,int y);
-	
+	public Dot(Color color)
+	{
+		this.color=color;
+		boardMovement=(BoardMovement) BoardUtility.getInstance("BoardMovement");
+		uuid= UUID.randomUUID();
+		dotName = getClass().getSimpleName();
+	}
+	public Dot(Color color, BoardMovement boardMovement)
+	{
+		this.color=color;
+		this.boardMovement=boardMovement;
+		uuid= UUID.randomUUID();
+		dotName = getClass().getSimpleName();
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
 	public BoardMovement getBoardMovement() {
 		return boardMovement;
 	}

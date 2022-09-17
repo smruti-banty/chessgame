@@ -1,12 +1,17 @@
 package game.chessgame.dotdesign;
 
+import game.chessgame.boarddesign.BoardMovement;
 import game.chessgame.boarddesign.Color;
 
 public class Bishop extends Dot{
-	public Bishop(Color color, int startPointX, int startPointY) {
-		super(color, startPointX, startPointY);
+	public Bishop() {
 	}
-
+	public Bishop(Color color) {
+		super(color);
+	}
+	public Bishop(Color color, BoardMovement boardMovement) {
+		super(color,boardMovement);
+	}
 	@Override
 	public boolean canMove(int x, int y) { 
 		if(!getBoardMovement().isAnyDot(x, y) || (getBoardMovement().isAnyDot(x, y) && !getBoardMovement().isSameColorDot(x, y, getColor())))

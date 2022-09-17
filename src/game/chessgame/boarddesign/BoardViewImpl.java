@@ -22,6 +22,6 @@ public class BoardViewImpl implements BoardView{
 	@Override
 	public void playserDotRemaining(Player p) {
 		System.out.println("\n--------" + p.getPlayerName() + "--------\n");
-		p.getAllDot().forEach((k, v) -> System.out.println(k + "==> " + v));
+		p.getAllDot().allCombinationOfDot().forEach((k, v) -> System.out.println(k + "==> " + v));
 	}
 }

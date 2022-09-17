@@ -1,11 +1,20 @@
 package game.chessgame.dotdesign;
 
+import game.chessgame.boarddesign.BoardMovement;
 import game.chessgame.boarddesign.Color;
 
 public class King extends Dot{
 
-	public King(Color color, int startPointX, int startPointY) {
-		super(color, startPointX, startPointY);
+	public King() {
+		super();
+	}
+
+	public King(Color color, BoardMovement boardMovement) {
+		super(color, boardMovement);
+	}
+
+	public King(Color color) {
+		super(color);
 	}
 
 	@Override
