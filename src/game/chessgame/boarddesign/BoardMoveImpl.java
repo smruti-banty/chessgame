@@ -11,6 +11,16 @@ import game.chessgame.players.Player;
 
 public class BoardMoveImpl implements BoardMovement {
 	@Override
+	/**
+	 * <h1>For moving the dot</h1>
+	 * @param initialX
+	 * @param intialY
+	 * @param destinationX
+	 * @param destinationY
+	 * @param currntPlayer
+	 * @param oppositionPlayer
+	 * @return <p>It return a boolean value as per the movement</p>
+	 */
 	public boolean moveDot(int intialX, int intialY, int destinationX, int destinationY, Player p, Player opposition) {
 		Dot dt = dot[intialX][intialY];
 		if (dt.canMove(destinationX, destinationY)) {
@@ -34,16 +44,34 @@ public class BoardMoveImpl implements BoardMovement {
 	}
 
 	@Override
+	/**
+	 * <h1>To check any dot in a given position</h1>
+	 * @param xPosition
+	 * @param yPosition
+	 * @return <p>Returns true if any dot else return false</p>
+	 */
 	public boolean isAnyDot(int x, int y) {
 		return Board.dot[x][y] != null;
 	}
 
 	@Override
+	/**
+	 * <h1>To check a specific color</h1>
+	 * @param dotXPosition
+	 * @param dotYPosition
+	 * @return boolean
+	 */
 	public boolean isSameColorDot(int x, int y, Color color) {
 		return Board.dot[x][y].getColor() == color;
 	}
 
 	@Override
+	/**
+	 * <h1>To move the dot from one position to another</h1>
+	 * @param positionX
+	 * @param positionY
+	 * @param dot
+	 */
 	public void setMove(int x, int y, Dot dot) {
 		if (dot != null) {
 			dot.setX(x);
@@ -53,6 +81,11 @@ public class BoardMoveImpl implements BoardMovement {
 	}
 
 	@Override
+	/**
+	 * <h1>To start the game</h1>
+	 * @param player1
+	 * @param player2
+	 */
 	public void start(Player p1, Player p2) {
 		setMove(0, 0, new Rook(p1.getColor()));
 		setMove(0, 7, new Rook(p1.getColor()));

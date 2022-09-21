@@ -71,7 +71,7 @@ public abstract class Dot implements IDot {
 	}
 	@Override
 	public String toString() {
-		return  dotName.substring(0,2)+" " ;
+		return  dotName.substring(0,2) ;
 	}
 	
 }

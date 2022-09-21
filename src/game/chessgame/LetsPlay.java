@@ -55,11 +55,11 @@ public class LetsPlay {
 				bv.showBoard();
 				break;
 			case 2:
-				bv.playserDotRemaining(turn == 1 ? p1 : p2);
+				bv.playersDotRemaining(turn == 1 ? p1 : p2);
 				;
 				break;
 			case 3:
-				bv.playserDotRemaining(turn == 1 ? p2 : p1);
+				bv.playersDotRemaining(turn == 1 ? p2 : p1);
 				;
 				break;
 			default:
